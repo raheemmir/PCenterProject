@@ -18,4 +18,43 @@ class City {
     }
 }
 
-// Thinking we parse the json dataset and use these city objects like a linked list
+class Path {
+    constructor() {
+        this.startingCity = null;
+    }
+    setFirstNode(startingCity) {
+        this.startingCity = startingCity;
+    }
+    traverse() {
+        return "not implemented yet"
+    }
+}
+
+
+// data is the json file, somehow load it in
+// not tested yet
+function buildPath(data) {
+    cities = []
+
+    for (let i = 0; i < data.nodes.length; i++) {
+        node = data.nodes[i];
+        const city = new City(node.id, node.name, node.lat, node.lon, node.population);
+        cities.push(city);
+    }
+
+    for (let i = 0; i < data.edges.length; i++) {
+        edge = data.edges[i];
+        sourceCity = cities.find(city => city.id == edge.source);
+        targetCity = cities.find(city => city.id == edge.target);
+        sourceCity.setNextCity(targetCity, edge.distance);
+        if (sourceCity.getNextCity() != null, 0) {
+            print('valid');
+        }
+    }
+
+    const Path = new Path();
+    firstNode = cities.find(city => city.id == 1);
+    Path.setFirstNode(firstNode);
+
+    return Path;
+}
