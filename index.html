@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> P-Center Visualization</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <style>
+        #map { height: 700px;}
+        #controls { margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Optimal P-Center Visualization</h1>
+    <div id="controls">
+        <label for="pValue">Number of Facilities (p):</label>
+        <input type="number" id="pValue" min="1" />
+        <button id="runPCenter">Run P-Center</button>
+        <label id="optimalLambda" style="margin-left: 5px; font-weight: bold;">Optimal Lambda:</label>
+        <span id="optimalLambdaValue" style="font-weight: bold;">Waiting to be calculated...</span>
+    </div>
+    <div id="map"></div>
+    <script src="algorithm.js"></script>
+</body>
+</html>

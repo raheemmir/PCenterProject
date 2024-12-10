@@ -1,3 +1,6 @@
+// This file contains previous attempts to implement p-center 
+// Lots of this code is updated/edited (partly to work with city objects / the dataset) in algorithm.js
+
 const readline = require("readline").createInterface({
     input: process.stdin,
     output: process.stdout
@@ -137,7 +140,7 @@ function pCenter(threshold, weights, positions, p) {
     });
 }
 
-// Test Case figure out a way to get the dataset from the jason
+// Test Case figure out a way to get the dataset from the json
 let weights = {
     "Sacremento": 526384,
     "Stockton": 319543,
@@ -174,82 +177,3 @@ let threshold = 1;
 // Call the function
 pCenter(threshold, weights, positions, p);
 
-
-// we can use this for visualizing i got it from chat so i am not sure
-// function visualizeWithPathsAndFacilities(cities, edges, facilities, mapId = "map") {
-//     const map = L.map(mapId).setView([38.575764, -121.478851], 7);
-
-//     // Add base map layer
-//     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-//         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-//     }).addTo(map);
-
-//     // Display cities as markers
-//     cities.forEach(city => {
-//         L.marker([city.lat, city.lon])
-//             .addTo(map)
-//             .bindPopup(`${city.name} (Population: ${city.population})`);
-//     });
-
-//     // Draw paths (edges)
-//     edges.forEach(edge => {
-//         const line = [
-//             [edge.city1.lat, edge.city1.lon],
-//             [edge.city2.lat, edge.city2.lon]
-//         ];
-//         const polyline = L.polyline(line, { color: "blue" }).addTo(map);
-//         polyline.bindTooltip(`${edge.distance.toFixed(2)} km`, {
-//             permanent: true,
-//             offset: [0, -10]
-//         });
-//     });
-
-//     // Display facilities as red circles
-//     facilities.forEach(facility => {
-//         L.circleMarker([facility.lat, facility.lon], {
-//             radius: 10,
-//             color: "red",
-//             fillColor: "red",
-//             fillOpacity: 0.8
-//         })
-//             .addTo(map)
-//             .bindPopup(`${facility.name}`);
-//     });
-// }
-
-// // Fetch and Display Data
-// function fetchAndDisplay(p) {
-//     fetch("cities.json")
-//         .then(response => response.json())
-//         .then(data => {
-//             const { cities, edges } = buildCitiesAndEdges(data);
-//             const weightedPCenter = new WeightedPCenter(cities, edges, p);
-
-//             try {
-//                 const result = weightedPCenter.solve();
-//                 console.log("Optimal λ:", result.lambda);
-//                 console.log("Facilities:", result.facilities);
-
-//                 // Display λ and facilities on the page
-//                 document.getElementById("lambda-output").textContent = `Optimal λ: ${result.lambda.toFixed(2)} km`;
-
-//                 // Display coverage details in the desired format
-//                 document.getElementById("facilities-output").innerHTML = result.coverageDetails
-//                     .map((detail, index) => `
-//                         <strong>Facility ${index + 1} (${detail.facility.name})</strong><br>
-//                         Covers:<br>
-//                         ${detail.coveredCities
-//                             .map(cityDetail => `- ${cityDetail.city}: ${cityDetail.distance.toFixed(2)} km`)
-//                             .join("<br>")}
-//                     `)
-//                     .join("<br><br>");
-
-//                 // Visualize the results
-//                 visualizeWithPathsAndFacilities(cities, edges, result.facilities);
-//             } catch (error) {
-//                 console.error(error.message);
-//                 alert(error.message);
-//             }
-//         })
-//         .catch(error => console.error("Error loading cities.json:", error));
-// }
